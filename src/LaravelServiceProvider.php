@@ -1,6 +1,6 @@
 <?php
 
-namespace Intervention\Image;
+namespace ErisRayanesh\ICheetahStaticClient;
 
 use ErisRayanesh\ICheetahStaticClient\Manager;
 use Illuminate\Support\ServiceProvider;
