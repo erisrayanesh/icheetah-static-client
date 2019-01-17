@@ -1,0 +1,26 @@
+{
+    "name": "erisrayanesh/icheetah-static-client",
+    "description": "The ICheetah static client",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "ErisRayanesh\\ICheetahStaticClient\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErisRayanesh\\ICheetahStaticClient\\LaravelServiceProvider"
+            ],
+            "aliases": {
+                "media": "ErisRayanesh\\ICheetahStaticClient\\Facades\\Media"
+            }
+        }
+    }
+}
