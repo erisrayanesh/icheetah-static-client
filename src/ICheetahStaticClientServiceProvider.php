@@ -5,7 +5,7 @@ namespace ErisRayanesh\ICheetahStaticClient;
 use ErisRayanesh\ICheetahStaticClient\Manager;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelServiceProvider extends ServiceProvider
+class ICheetahStaticClientServiceProvider extends ServiceProvider
 {
 
     /**
@@ -17,7 +17,7 @@ class LaravelServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/config/config.php' => config_path('media.php')
-        ]);
+        ], 'config');
     }
 
     /**
@@ -28,6 +28,8 @@ class LaravelServiceProvider extends ServiceProvider
     public function register()
     {
         $app = $this->app;
+
+		$this->mergeConfigFrom(__DIR__.'/config/config.php', 'media');
 
         $app->singleton('media', function ($app) {
             return new Manager($app['config']->get('media'));

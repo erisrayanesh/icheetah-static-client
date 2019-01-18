@@ -19,7 +19,7 @@
         },
         "laravel": {
             "providers": [
-                "ErisRayanesh\\ICheetahStaticClient\\LaravelServiceProvider"
+                "ErisRayanesh\\ICheetahStaticClient\\ICheetahStaticClientServiceProvider"
             ],
             "aliases": {
                 "media": "ErisRayanesh\\ICheetahStaticClient\\Facades\\Media"
