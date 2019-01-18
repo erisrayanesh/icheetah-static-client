@@ -12,23 +12,43 @@ class Manager
 
 	public function __construct($uri, $key)
 	{
+		$this->setUri($uri);
 	}
 
-	public function getFiles()
+	/**
+	 * @param $uri
+	 * @return \Psr\Http\Message\ResponseInterface
+	 */
+	public function getFiles($uri)
 	{
-
+		return $this->browse($uri, false, true);
 	}
 
-	public function getDirectories()
+	/**
+	 * @param $uri
+	 * @return \Psr\Http\Message\ResponseInterface
+	 */
+	public function getDirectories($uri)
 	{
-
+		return $this->browse($uri, true, false);
 	}
 
-	public function browse()
+	/**
+	 * @param $uri
+	 * @param bool $directories
+	 * @param bool $files
+	 * @return \Psr\Http\Message\ResponseInterface
+	 */
+	public function browse($uri, $directories = true, $files = true)
 	{
-
+		return $this->getGuzzel()->get($uri, [
+			'query' => $this->getQueryOptions($directories, $files),
+			'headers' => [
+				'Accept' => 'application/json',
+				'Authorization' => $this->getKey(),
+			]
+		]);
 	}
-
 
 	/**
 	 * @return mixed
@@ -40,10 +60,12 @@ class Manager
 
 	/**
 	 * @param mixed $uri
+	 * @return Manager
 	 */
 	public function setUri($uri)
 	{
 		$this->uri = $uri;
+		return $this;
 	}
 
 	/**
@@ -56,12 +78,13 @@ class Manager
 
 	/**
 	 * @param mixed $key
+	 * @return Manager
 	 */
 	public function setKey($key)
 	{
 		$this->key = $key;
+		return $this;
 	}
-
 
 	protected function getGuzzel()
 	{
@@ -70,5 +93,19 @@ class Manager
 		]);
 	}
 
+	protected function getQueryOptions($directories = true, $files = true)
+	{
+		$opt = [];
+
+		if (!$directories){
+			$opt['dir'] = 0;
+		}
+
+		if (!$files){
+			$opt['files'] = 0;
+		}
+
+		return $opt;
+	}
 
 }
