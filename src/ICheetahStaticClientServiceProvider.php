@@ -32,7 +32,7 @@ class ICheetahStaticClientServiceProvider extends ServiceProvider
 		$this->mergeConfigFrom(__DIR__.'/config/config.php', 'media');
 
         $app->singleton('media', function ($app) {
-            return new Manager($app['config']->get('media'));
+            return new Manager($app['config']->get('media.url'), $app['config']->get('media.key'));
         });
 
         $app->alias('media', 'ErisRayanesh\ICheetahStaticClient\Manager');
