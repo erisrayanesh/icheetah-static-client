@@ -45,7 +45,7 @@ class Manager
 			'query' => $this->getQueryOptions($directories, $files),
 			'headers' => [
 				'Accept' => 'application/json',
-				'Authorization' => $this->getKey(),
+				'App-Key' => $this->getKey(),
 			]
 		]);
 	}
