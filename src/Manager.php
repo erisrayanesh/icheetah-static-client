@@ -13,6 +13,7 @@ class Manager
 	public function __construct($uri, $key)
 	{
 		$this->setUri($uri);
+		$this->setKey($key);
 	}
 
 	/**
